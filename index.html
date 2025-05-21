@@ -163,7 +163,7 @@
             background-color: #40485C; transform: translateY(1px);
             box-shadow: 0 1px 0px var(--button-border), inset 0 1px 1px rgba(0,0,0,0.2);
         }
-
+        
         /* MFD Screen Styling */
         .content-panel { /* This is the MFD screen itself */
             grid-column: 2 / 3; grid-row: 2 / 3;
@@ -178,8 +178,11 @@
             line-height: 1.6;
             display: flex; /* Make it a flex container */
             flex-direction: column; /* Stack header, content, footer vertically */
+            height: 400px;
         }
-
+        ::-webkit-scrollbar {
+            display: none;
+        }
         .mfd-header-bar, .mfd-footer-bar {
             font-family: 'Chakra Petch', sans-serif; /* More technical font for these bars */
             background-color: var(--mfd-soft-key-bg);
@@ -213,7 +216,7 @@
         .mfd-content-area::-webkit-scrollbar-thumb { background: var(--button-face); border-radius: 2px; }
 
 
-        .content-section { display: none; animation: fadeInMFD 0.4s ease-out; }
+        .content-section { display: none; animation: fadeInMFD 0.4s ease-out; overflow: scroll;}
         .content-section.active { display: block; }
         @keyframes fadeInMFD {
             from { opacity: 0.2; filter: blur(1px); transform: translateY(5px);}
