@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
             --console-bg: #2C303A;
             --panel-bg: #3B3F4A;
@@ -6,7 +10,8 @@
             --mfd-text: #A0B0C0;
             --mfd-header-text: #E0B070;
             --mfd-soft-key-text: #8090A0; /* Color for MFD header/footer bar text */
-            --mfd-soft-key-bg: rgba(10, 15, 20, 0.5); /* Slightly different bg for soft key bars */
+            --mfd-soft-key-bg: #123158;
+            /* --mfd-soft-key-bg: rgba(10, 15, 20, 0.5); Slightly different bg for soft key bars */
             --button-face: #4A505A;
             --button-text: #D8DDE0;
             --button-border: #2A2E38;
@@ -92,7 +97,7 @@
         }
 
         .nav-push-button {
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Inconsolata', monospace;
             font-weight: 600; font-size: 0.7rem;
             color: var(--button-text); background-color: var(--button-face);
             border: 2px solid var(--button-border);
@@ -133,13 +138,13 @@
         .mfd-button-bank { display: flex; gap: 16px; }
         .mfd-button-bank.vertical { flex-direction: column; }
         .mfd-button-bank.horizontal { flex-direction: row; justify-content: center; }
-        .mfd-button-bank.top { grid-column: 2 / 3; grid-row: 1 / 2; gap: 120px}
+        .mfd-button-bank.top { grid-column: 2 / 3; grid-row: 1 / 2; gap: 120px;}
         .mfd-button-bank.bottom { grid-column: 2 / 3; grid-row: 3 / 4; }
         .mfd-button-bank.left { grid-column: 1 / 2; grid-row: 2 / 3; justify-content: center; }
         .mfd-button-bank.right { grid-column: 3 / 4; grid-row: 2 / 3; justify-content: center; }
 
         .mfd-push-button {
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Inconsolata', monospace;
             font-weight: 600; font-size: 0.6rem;
             color: var(--button-text); background-color: var(--button-face);
             border: 1px solid var(--button-border);
@@ -154,11 +159,16 @@
             background-color: #40485C; transform: translateY(1px);
             box-shadow: 0 1px 0px var(--button-border), inset 0 1px 1px rgba(0,0,0,0.2);
         }
+
+        .mfd-button-bank.top .mfd-push-button{
+            font-size: 1.5rem;
+        }
         
         /* MFD Screen Styling */
         .content-panel { /* This is the MFD screen itself */
             grid-column: 2 / 3; grid-row: 2 / 3;
-            font-family: 'Roboto Mono', monospace;
+            /* font-family: 'Roboto Mono', monospace; */
+            font-family: 'Inconsolata', monospace;
             background-color: var(--mfd-screen-bg);
             border: 3px solid var(--panel-border);
             border-radius: 4px; /* Keep this for the overall screen */
@@ -176,21 +186,23 @@
         }
         .mfd-header-bar, .mfd-footer-bar {
             display: none;
-            animation: fadeInMFD 0.4s ease-out;
-            overflow: scroll;
+            /* animation: fadeInMFD 0.4s ease-out; */
+            /* overflow: scroll; */
         }
         .mfd-header-bar.active 
         {
-            font-family: 'Chakra Petch', sans-serif; /* More technical font for these bars */
-            background-color: var(--mfd-soft-key-bg);
+            font-family: 'Inconsolata', monospace; /* More technical font for these bars */
+            /* background-color: var(--mfd-soft-key-bg); */
             color: var(--mfd-soft-key-text);
-            padding: 4px 8px; /* Reduced padding */
+            /* padding: 4px 8px;  */
             display: flex;
             justify-content: space-around; /* Distribute labels */
             font-size: 0.65rem; /* Smaller font size */
             text-transform: uppercase;
             border-bottom: 1px solid var(--panel-border); /* Separator line */
             flex-shrink: 0; /* Prevent shrinking */
+            align-items: stretch;
+            overflow: hidden;
         }
         .mfd-footer-bar {
             border-top: 1px solid var(--panel-border); /* Separator line */
@@ -200,6 +212,24 @@
             text-align: center;
             flex-basis: 0; /* Allow flex-grow to distribute space */
             flex-grow: 1;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            padding: 4px 8px;
+            /*             
+            border-style: solid;
+            border-width: thin;
+            border-color: white; 
+            */
+        }
+        .mfd-soft-key:not(:first-child) {
+            border-left: 1px solid var(--panel-border);
+        }
+        .mfd-soft-key.active {
+            color: green;
         }
 
 
@@ -213,8 +243,13 @@
         .mfd-content-area::-webkit-scrollbar-thumb { background: var(--button-face); border-radius: 2px; }
 
 
-        .content-section { display: none; animation: fadeInMFD 0.4s ease-out; overflow: scroll;}
-        .content-section.active { display: block; }
+        .content-section { 
+            display: none; 
+            animation: fadeInMFD 0.4s ease-out; 
+            overflow: scroll;}
+        .content-section.active { 
+            display: block; 
+        }
         @keyframes fadeInMFD {
             from { opacity: 0.2; filter: blur(1px); transform: translateY(5px);}
             to { opacity: 1; filter: blur(0); transform: translateY(0px);}
@@ -240,9 +275,30 @@
             border: 1px solid var(--button-face); border-radius: 3px;
             padding: 10px; transition: background-color 0.2s ease;
         }
+
+        .project-card .card-container{
+            display: flex;
+            justify-content: left;
+            height: 100%;
+        }
+
+        .project-card .card-side{
+            padding: 10px;
+        }
+
+
+        .project-card .img-container { 
+            max-width: 400px;
+            height: auto;
+            border: 1px solid var(--button-face); 
+            border-radius: 3px; 
+            overflow: hidden; 
+            margin-bottom: 10px;
+        }
+        .project-card .img-container img { width: 100%; }
         .project-card:hover { background-color: rgba(40, 50, 60, 0.6); }
         .project-card h3 {
-            font-family: 'Chakra Petch', sans-serif; font-size: 1rem;
+            font-family: 'Inconsolata', monospace; font-size: 1rem;
             color: var(--mfd-header-text); margin-bottom: 4px; font-weight: 600;
         }
         .project-card p { font-size: 0.75rem; color: var(--mfd-text); margin-bottom: 6px; }
@@ -252,7 +308,7 @@
             margin-right: 3px; display: inline-block; border: 1px solid var(--button-face);
         }
         .project-card .links a {
-            font-family: 'Chakra Petch', sans-serif; background-color: var(--button-face);
+            font-family: 'Inconsolata', monospace; background-color: var(--button-face);
             color: var(--button-text); padding: 3px 8px; border-radius: 2px;
             font-size: 0.7rem; text-transform: uppercase; border: 1px solid var(--button-border);
             box-shadow: 0 1px 0 var(--button-border); margin-right: 5px;
@@ -262,7 +318,7 @@
         .project-card .links a:active { transform: translateY(1px); box-shadow: none; }
 
         .action-button {
-            font-family: 'Chakra Petch', sans-serif;
+            font-family: 'Inconsolata', monospace;
             background-color: var(--indicator-on-amber); color: var(--console-bg);
             padding: 8px 14px; border-radius: 3px;
             text-align: center; text-transform: uppercase;

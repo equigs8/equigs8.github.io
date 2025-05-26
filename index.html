@@ -4,15 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio - Ethan Quigley - CMD Interface</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Orbitron:wght@500;700&family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Orbitron:wght@500;700&family=Chakra+Petch:wght@400;500;600;700&family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="dist/style-built.css">
+    <link rel="stylesheet" href="css/tailwind-input.css">
 </head>
 <body>
     <div class="console-container">
         <header class="header-panel">
-            <h1>PORTFOLIO</h1>
-            <p>Ethan Quigley // PORTFOLIO DATALINK</p>
+            <h1>ETHAN QUIGLEY</h1>
+            <p>// PORTFOLIO //</p>
         </header>
 
         <nav class="nav-panel">
@@ -30,11 +32,11 @@
         <div class="mfd-assembly-wrapper">
             <div class="mfd-assembly">
                 <div class="mfd-button-bank horizontal top">
-                    <button class="mfd-push-button" title="Function Key 1" data-target="games">V</button>
-                    <button class="mfd-push-button" title="Function Key 2">V</button>
-                    <button class="mfd-push-button" title="Function Key 3">V</button>
-                    <button class="mfd-push-button" title="Function Key 4">V</button>
-                    <button class="mfd-push-button" title="Function Key 5">V</button>
+                    <button class="mfd-push-button" title="Function Key 1" data-target="projects">˅</button>
+                    <button class="mfd-push-button" title="Function Key 2" data-target="games">▼</button>
+                    <button class="mfd-push-button" title="Function Key 3">▼</button>
+                    <button class="mfd-push-button" title="Function Key 4">▼</button>
+                    <button class="mfd-push-button" title="Function Key 5">▼</button>
                 </div>
                 <div class="mfd-button-bank vertical left">
                     <button class="mfd-push-button" title="Page Up">PG.UP</button>
@@ -47,7 +49,7 @@
                         <span class="mfd-soft-key">TEST</span> <span class="mfd-soft-key">OTHER</span> <span class="mfd-soft-key">OPT3</span> <span class="mfd-soft-key">OPT4</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
                     <div class="mfd-header-bar" id="projects-bar">
-                        <span class="mfd-soft-key">GAMES</span> <span class="mfd-soft-key">COURSES</span> <span class="mfd-soft-key">OPT3</span> <span class="mfd-soft-key">OPT4</span> <span class="mfd-soft-key">OPT5</span>
+                        <span class="mfd-soft-key" id="overview-label" data-target="projects">OVERVIEW</span> <span class="mfd-soft-key" id="games-label" data-target="games">GAMES</span> <span class="mfd-soft-key">COURSES</span> <span class="mfd-soft-key">OPT4</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
                     <section id="about" class="content-section">
                         <h2>// PERSONNEL FILE //</h2>
@@ -62,34 +64,59 @@
                         <h2>// GAMES //</h2>
 
                     </section>
+                    <div class="mfd-content-area">
+                        <section id="projects" class="content-section">
+                            <h2>// MISSION & PROJECT LOGS //</h2>
+                            <div class="project-grid">
+                                <div class="project-card">
+                                    <h3>PROJECT: TURNTABLE</h3>
+                                    <div class="card-container">
+                                        <div class="card-side">
+                                            <div class="img-container">
+                                                <img src="images/Turntable.jpg" alt="https://openlab.citytech.cuny.edu/ethanquigley/files/2025/05/ImageInspo.jpg">
+                                            </div>
 
-                    <section id="projects" class="content-section">
-                        <h2>// MISSION & PROJECT LOGS //</h2>
-                        <div class="project-grid">
-                            <div class="project-card">
-                                <h3>PROJECT: TURNTABLE</h3>
-                                <img src="images/Turntable.jpg" alt="https://openlab.citytech.cuny.edu/ethanquigley/files/2025/05/ImageInspo.jpg">
-                                <p>ROLE: Designer. </p>
-                                <div class="tech-tags"><span>PHYSICAL DISGN</span> <span>PROJECT MANAGEMENT</span></div>
-                                <div class="links mt-2"><a href="#">VIEW SIMULATION</a> <a href="#">ACCESS SPEC DOC</a></div>
+                                        </div>
+                                        <div class="card-side">
+                                            <p>ROLE: Designer. </p>
+                                            <div class="tech-tags"><span>PHYSICAL DESIGN</span> <span>PROJECT MANAGEMENT</span></div>
+                                            <div class="links mt-2"><a href="#">VIEW SIMULATION</a> <a href="#">ACCESS SPEC DOC</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-card">
+                                    <h3>PROJECT: 'SOUNDSCAPE</h3>
+                                    <div class="card-container"> <span class="code-annotation"> </span>
+                                        <div class="card-side"> <span class="code-annotation"></span>
+                                            <div class="img-container">
+                                                <img src="images/SoundScape.jpg" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card-side"> <span class="code-annotation"></span>
+                                            <p>ROLE: Developer. CONTRIBUTION: Created a Soundscape and visualisaction based on a photo of a beach.</p>
+                                            <div class="tech-tags"><span>AUDITION</span> <span>ILLISTRATOR</span></div>
+                                            <div class="links mt-2"><a href="#">ANALYZE LOGS</a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="project-card">
+                                    <h3>PROJECT: UI</h3>
+                                    <div class="card-container"> <span class="code-annotation"></span>
+                                        <div class="card-side"> <span class="code-annotation"></span>
+                                            <div class="img-container">
+                                                <img src="images/UI.png" alt="">
+                                            </div>
+                                        </div>
+                                        <div class="card-side"> <span class="code-annotation"></span>
+                                            <p>ROLE: UI/UX Developer. CONTRIBUTION: Designed a Main menu and settings page for one of the games I developed.</p>
+                                            <div class="tech-tags"><span>UNITY</span> <span>FIGMA</span> <span>UI/UX</span></div>
+                                            <div class="links mt-2"><a href="#">LOAD MODULES</a></div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="project-card">
-                                <h3>PROJECT: 'SOUNDSCAPE</h3>
-                                <img src="images/SoundScape.jpg" alt="">
-                                <p>ROLE: Developer. CONTRIBUTION: Created a Soundscape and visualisaction based on a photo of a beach.</p>
-                                <div class="tech-tags"><span>AUDITION</span> <span>ILLISTRATOR</span></div>
-                                <div class="links mt-2"><a href="#">ANALYZE LOGS</a></div>
-                            </div>
-                             <div class="project-card">
-                                <h3>PROJECT: UI</h3>
-                                <img src="images/UI.png" alt="">
-                                <p>ROLE: UI/UX Developer. CONTRIBUTION: Designed a Main menu and settings page for one of the games I developed.</p>
-                                <div class="tech-tags"><span>UNITY</span> <span>FIGMA</span> <span>UI/UX</span></div>
-                                <div class="links mt-2"><a href="#">LOAD MODULES</a></div>
-                            </div>
-                        </div>
-                    </section>
-
+                        </section>
+                    </div>
                     <section id="contact" class="content-section">
                         <h2>// ESTABLISH COMMS LINK //</h2>
                         <p>AUTHORIZED CHANNELS:</p>
@@ -122,9 +149,9 @@
                 </main>
 
                 <div class="mfd-button-bank vertical right">
-                    <button class="mfd-push-button" title="Scroll Up">SCRL ▲</button>
+                    <button class="mfd-push-button" title="Scroll Up" id="scroll-up">SCRL ▲</button>
                     <button class="mfd-push-button" title="Enter/Confirm">EXEC</button>
-                    <button class="mfd-push-button" title="Scroll Down">SCRL ▼</button>
+                    <button class="mfd-push-button" title="Scroll Down" id="scroll-down">SCRL ▼</button>
                 </div>
                 <div class="mfd-button-bank horizontal bottom">
                     <button class="mfd-push-button" title="Main Menu">MENU</button>
@@ -141,92 +168,6 @@
         </footer>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-
-            
-
-            const navButtons = document.querySelectorAll('.nav-push-button');
-            const sections = document.querySelectorAll('.content-section');
-            const topBars = document.querySelectorAll('.mfd-header-bar');
-
-            function GetActiveSection() {
-                const activeSection = document.querySelector('.content-section.active');
-                return activeSection ? activeSection.id : null;
-            }
-
-            function changeTopBarText(targetId) {
-                
-            }
-
-            function activateSection(targetId) {
-                sections.forEach(section => section.classList.remove('active'));
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                topBars.forEach(div => div.classList.remove('active'));
-
-                const targetSection = document.getElementById(targetId);
-                const targetNavButton = document.querySelector(`.nav-push-button[data-target="${targetId}"]`);
-                let targetTopBarId = targetId + '-bar';
-                console.log('targetTopBarId', targetTopBarId);
-                const targetTopBar = document.getElementById(targetTopBarId);
-                console.log('targetTopBar', targetTopBar);
-                
-
-                if (targetSection) targetSection.classList.add('active');
-                if (targetNavButton) targetNavButton.classList.add('active');
-                if (targetTopBar) targetTopBar.classList.add('active');
-            }
-
-            navButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const targetId = button.dataset.target;
-                    activateSection(targetId);
-                });
-            });
-            
-            const mfdButtons = document.querySelectorAll('.mfd-push-button');
-            mfdButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    if(GetActiveSection() === 'projects')
-                    {
-                        activateSection('games');
-                        console.log('MFD Button Pressed:', button.textContent || button.title);
-                    }
-                    
-                    button.classList.add('mfd-pressed'); // This class is not styled yet, but can be used for feedback
-                    setTimeout(() => button.classList.remove('mfd-pressed'), 150);
-                });
-            });
-
-            activateSection('about');
-            document.getElementById('currentYear').textContent = new Date().getFullYear();
-
-            const contactForm = document.querySelector('#contact form');
-            if(contactForm){
-                contactForm.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const sendButton = contactForm.querySelector('button[type="submit"]');
-                    const originalText = sendButton.textContent;
-                    sendButton.textContent = 'TRANSMITTING...';
-                    sendButton.disabled = true;
-                    sendButton.style.backgroundColor = 'var(--button-face)';
-                    sendButton.style.color = 'var(--text-muted)';
-
-                    setTimeout(() => {
-                        sendButton.textContent = 'PACKET ACKNOWLEDGED';
-                        sendButton.style.backgroundColor = 'var(--indicator-on-green)';
-                        sendButton.style.color = 'var(--console-bg)';
-                        setTimeout(() => {
-                            sendButton.textContent = originalText;
-                            sendButton.style.backgroundColor = ''; 
-                            sendButton.style.color = '';
-                            sendButton.disabled = false;
-                            contactForm.reset();
-                        }, 2500);
-                    }, 1500);
-                });
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
