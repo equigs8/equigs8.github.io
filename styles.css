@@ -161,9 +161,9 @@
         }
 
         .mfd-button-bank.top .mfd-push-button{
-            font-size: 1.5rem;
+            font-size: 2rem;
+            padding-top: 22px;
         }
-        
         /* MFD Screen Styling */
         .content-panel { /* This is the MFD screen itself */
             grid-column: 2 / 3; grid-row: 2 / 3;

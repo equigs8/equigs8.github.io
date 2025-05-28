@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
-            
+            // get if runnig on local server        
+            const IS_LOCALHOST = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            const DEBUG_LOGS = IS_LOCALHOST;
+
             // get top buttons, sections, and nav buttons
             const navButtons = document.querySelectorAll('.nav-push-button');
             const sections = document.querySelectorAll('.content-section');
@@ -15,6 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
             function changeTopBarText(targetId) {
                 
+            }
+
+            function consoleLog(message){
+                if (DEBUG_LOGS) {
+                    console.log(message)
+                };
             }
 
             function activateSubSection(targetId) {
@@ -37,9 +46,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 const targetSection = document.getElementById(targetId);
                 const targetNavButton = document.querySelector(`.nav-push-button[data-target="${targetId}"]`);
                 let targetTopBarId = targetId + '-bar';
-                console.log('targetTopBarId', targetTopBarId);
+                consoleLog('targetTopBarId', targetTopBarId);
                 const targetTopBar = document.getElementById(targetTopBarId);
-                console.log('targetTopBar', targetTopBar);
+                consoleLog('targetTopBar', targetTopBar);
                 const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
                 if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
                 
@@ -65,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     //     console.log('MFD Button Pressed:', button.textContent || button.title);
                     // }
                     if(button.dataset.target != null){
-                        console.log('MFD Button Pressed:', button.textContent || button.title);
+                        consoleLog('MFD Button Pressed:', button.textContent || button.title);
                         activateSubSection(button.dataset.target);
                     }
                     
@@ -101,11 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 scrollButtonUp.addEventListener('click', () => {
                     
                     mfdContentArea.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
-                    console.log('Scrolling Up');
+                    consoleLog('Scrolling Up');
                 });
                 scrollButtonDown.addEventListener('click', () => {
                     mfdContentArea.scrollBy({ top: scrollAmount, behavior: 'smooth' });
-                    console.log('Scrolling Down');
+                    consoleLog('Scrolling Down');
                 });
             }
 
