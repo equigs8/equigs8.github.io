@@ -1,3 +1,57 @@
+function getActiveSection(doc = document) {
+    const activeSection = doc.querySelector('.content-section.active');
+    return activeSection ? activeSection.id : null;
+}
+
+function activateSection(targetId, doc = document, navButtons, sections, topBars, topBarLabels) {
+    sections.forEach(section => section.classList.remove('active'));
+    navButtons.forEach(btn => btn.classList.remove('active'));
+    topBars.forEach(div => div.classList.remove('active'));
+    topBarLabels.forEach(label => label.classList.remove('active'));
+
+    const targetSection = document.getElementById(targetId);
+    const targetNavButton = document.querySelector(`.nav-push-button[data-target="${targetId}"]`);
+    let targetTopBarId = targetId + '-bar';
+    consoleLog('targetTopBarId', targetTopBarId);
+    const targetTopBar = document.getElementById(targetTopBarId);
+    consoleLog('targetTopBar', targetTopBar);
+    const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
+
+
+    if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
+    if (targetSection) targetSection.classList.add('active');
+    if (targetNavButton) targetNavButton.classList.add('active');
+    if (targetTopBar) targetTopBar.classList.add('active');
+}
+
+function activateSubSection(targetId, doc = document, sections, topBarLabels) {
+    sections.forEach(section => section.classList.remove('active'));
+    topBarLabels.forEach(label => label.classList.remove('active'));
+
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) targetSection.classList.add('active');
+
+    const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
+    if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
+
+    getProjectCards();
+}
+
+function getProjectCards() {
+    const activeSection = getActiveSection();
+    consoleLog(activeSection);
+    const projectCards = document.querySelectorAll(`#${activeSection} .project-card`);
+    consoleLog(projectCards);
+}
+
+function consoleLog(message){
+    if (DEBUG_LOGS) {
+        console.log(message)
+    };
+}
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
             // get if runnig on local server        
             const IS_LOCALHOST = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
@@ -9,7 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const topBars = document.querySelectorAll('.mfd-header-bar');
             const topBarLabels = document.querySelectorAll('.mfd-soft-key');
 
-            
+            //initial call
+            activeSection('projects', document, navButtons, sections, topBars, topBarLabels);
 
             function GetActiveSection() {
                 const activeSection = document.querySelector('.content-section.active');
@@ -19,49 +74,26 @@ document.addEventListener('DOMContentLoaded', () => {
             function changeTopBarText(targetId) {
                 
             }
+            
 
             function consoleLog(message){
                 if (DEBUG_LOGS) {
                     console.log(message)
                 };
             }
+            function getProjectCards() {
+                    const activeSection = GetActiveSection();
+                    consoleLog(activeSection);
+                    const projectCards = document.querySelectorAll(`#${activeSection} .project-card`);
+                    consoleLog(projectCards);
+                }
 
-            function activateSubSection(targetId) {
-                sections.forEach(section => section.classList.remove('active'));
-                topBarLabels.forEach(label => label.classList.remove('active'));
-
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) targetSection.classList.add('active');
-
-                const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
-                if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
-            }
-
-            function activateSection(targetId) {
-                sections.forEach(section => section.classList.remove('active'));
-                navButtons.forEach(btn => btn.classList.remove('active'));
-                topBars.forEach(div => div.classList.remove('active'));
-                topBarLabels.forEach(label => label.classList.remove('active'));
-
-                const targetSection = document.getElementById(targetId);
-                const targetNavButton = document.querySelector(`.nav-push-button[data-target="${targetId}"]`);
-                let targetTopBarId = targetId + '-bar';
-                consoleLog('targetTopBarId', targetTopBarId);
-                const targetTopBar = document.getElementById(targetTopBarId);
-                consoleLog('targetTopBar', targetTopBar);
-                const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
-                if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
-                
-
-                if (targetSection) targetSection.classList.add('active');
-                if (targetNavButton) targetNavButton.classList.add('active');
-                if (targetTopBar) targetTopBar.classList.add('active');
-            }
+           
 
             navButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const targetId = button.dataset.target;
-                    activateSection(targetId);
+                    activateSection(targetId, document, navButtons, sections, topBars, topBarLabels);
                 });
             });
             
@@ -75,7 +107,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     // }
                     if(button.dataset.target != null){
                         consoleLog('MFD Button Pressed:', button.textContent || button.title);
-                        activateSubSection(button.dataset.target);
+                        activateSubSection(button.dataset.target, document, sections, topBarLabels);
                     }
                     
                     
@@ -84,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            activateSection('projects');
+            
             document.getElementById('currentYear').textContent = new Date().getFullYear();
 
             // get scrolling buttons and content area
@@ -92,6 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollButtonDown = document.getElementById('scroll-down');
             const mfdContentArea = document.querySelector('.mfd-content-area');
 
+            
             if(mfdContentArea){
                 window.addEventListener('wheel', function(event){
                     if(mfdContentArea.contains(event.target)){
@@ -105,10 +138,11 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (scrollButtonUp && scrollButtonDown && mfdContentArea) {
-                const scrollAmount = 75;
+                const scrollAmount = 275;
 
                 scrollButtonUp.addEventListener('click', () => {
                     
+
                     mfdContentArea.scrollBy({ top: -scrollAmount, behavior: 'smooth' });
                     consoleLog('Scrolling Up');
                 });
@@ -147,3 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         });
+
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards};
+}

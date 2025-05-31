@@ -362,3 +362,23 @@
             .content-section h2 { font-size: 1.1rem; }
             .content-section p, .content-section ul { font-size: 0.75rem; }
         }
+         .game-iframe-container {
+            width: 100%; /* Make the iframe responsive within the card */
+            /* Maintain a 16:9 aspect ratio. Adjust padding-bottom if your game has a different ratio.
+               e.g., for 4:3 ratio, use padding-bottom: 75%; */
+            position: relative;
+            padding-bottom: 56.25%; /* (9 / 16 = 0.5625) for 16:9 */
+            height: 0;
+            overflow: hidden;
+            margin-top: 10px; /* Optional: space between title and game */
+            background-color: #000; /* Optional: background while game loads */
+            border-radius: 3px; /* Match project card style */
+        }
+        .game-iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none; /* Removes iframe border */
+        }
