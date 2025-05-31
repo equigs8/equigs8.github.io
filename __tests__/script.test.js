@@ -22,7 +22,7 @@ describe('Portfolio Script Tests', () => {
                     <section id="projects" class="content-section"></section>
                 </div>
             `;
-            expect(GetActiveSection(document)).toBeNull();
+            expect(getActiveSection(document)).toBeNull();
         });
     });
 
