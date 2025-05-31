@@ -32,3 +32,10 @@ jobs:
 
     - name: Run tests
       run: npm test
+
+    - name: Upload coverage reports
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage-report # Name of the artifact
+        path: coverage/       # Path to the directory to upload
+        if-no-files-found: error # Optional: fail if coverage/ directory is not found
