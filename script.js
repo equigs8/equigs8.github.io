@@ -185,5 +185,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards, deb};
+    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards};
 }
