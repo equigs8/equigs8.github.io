@@ -1,3 +1,5 @@
+let DEBUG_LOGS = false;
+
 function getActiveSection(doc = document) {
     const activeSection = doc.querySelector('.content-section.active');
     return activeSection ? activeSection.id : null;
@@ -55,7 +57,7 @@ function consoleLog(message){
 document.addEventListener('DOMContentLoaded', () => {
             // get if runnig on local server        
             const IS_LOCALHOST = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
-            const DEBUG_LOGS = IS_LOCALHOST;
+            DEBUG_LOGS = IS_LOCALHOST;
 
             // get top buttons, sections, and nav buttons
             const navButtons = document.querySelectorAll('.nav-push-button');
@@ -183,5 +185,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards};
+    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards, deb};
 }
