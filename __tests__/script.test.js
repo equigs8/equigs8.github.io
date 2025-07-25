@@ -1,5 +1,5 @@
 // Import functions to test from script.js
-const { getActiveSection, activateSection, consoleLog, getProjectCards} = require('../script.js');
+const { getActiveSection, activateSection, consoleLog, getProjectCardsInActiveSection} = require('../script.js');
 
 
 describe('Portfolio Script Tests', () => {
@@ -23,6 +23,15 @@ describe('Portfolio Script Tests', () => {
                 </div>
             `;
             expect(getActiveSection(document)).toBeNull();
+        });
+        test('should return first active section if multiple are active', () => {
+            document.body.innerHTML = `
+                <div>
+                    <section id="about" class="content-section active"></section>
+                    <section id="projects" class="content-section active"></section>
+                </div>
+            `;
+            expect(getActiveSection(document)).toBe('about');
         });
     });
 
@@ -50,6 +59,8 @@ describe('Portfolio Script Tests', () => {
         sections = document.querySelectorAll('.content-section');
         topBars = document.querySelectorAll('.mfd-header-bar');
         topBarLabels = document.querySelectorAll('.mfd-soft-key');
+
+        
 
         // Call activateSection to set the state for the following tests
         activateSection('projects', document, navButtons, sections, topBars, topBarLabels);
@@ -97,6 +108,34 @@ describe('Portfolio Script Tests', () => {
             // Assuming activateSection also deactivates other labels
             expect(aboutTopBarLabel.classList.contains('active')).toBe(false);
         });
+        });
+    });
+
+    describe('getProjectCardsInActiveSection', () => {
+        test('should return the project cards in the active section', () => {
+            // Set up a mock DOM environment for this test
+            document.body.innerHTML = `
+                <section id="projects" class="content-section active">
+                    <div class="project-card"></div>
+                    <div class="project-card"></div>
+                    <div class="project-card"></div>
+                </section>
+            `;
+            navButtons = document.querySelectorAll('.nav-push-button');
+            sections = document.querySelectorAll('.content-section');
+            topBars = document.querySelectorAll('.mfd-header-bar');
+            topBarLabels = document.querySelectorAll('.mfd-soft-key');
+
+        
+
+            // Call activateSection to set the state for the following tests
+            activateSection('projects', document, navButtons, sections, topBars, topBarLabels);
+            
+
+            // Call the function to get the project cards
+            const projectCards = getProjectCardsInActiveSection(document);
+            // Assert that the function returns the correct number of project cards
+            expect(projectCards.length).toBe(3);
         });
     });
 });

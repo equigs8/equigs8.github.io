@@ -36,14 +36,15 @@ function activateSubSection(targetId, doc = document, sections, topBarLabels) {
     const targetTopBarLabel = document.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
     if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
 
-    getProjectCards();
+    getProjectCardsInActiveSection();
 }
 
-function getProjectCards() {
+function getProjectCardsInActiveSection() {
     const activeSection = getActiveSection();
     consoleLog(activeSection);
     const projectCards = document.querySelectorAll(`#${activeSection} .project-card`);
     consoleLog(projectCards);
+    return projectCards;
 }
 
 function consoleLog(message){
@@ -66,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const topBarLabels = document.querySelectorAll('.mfd-soft-key');
 
             //initial call
-            activeSection('projects', document, navButtons, sections, topBars, topBarLabels);
+            activateSection('projects', document, navButtons, sections, topBars, topBarLabels);
 
             function GetActiveSection() {
                 const activeSection = document.querySelector('.content-section.active');
@@ -185,5 +186,5 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCards};
+    module.exports = { getActiveSection, activateSection, consoleLog, getProjectCardsInActiveSection};
 }
