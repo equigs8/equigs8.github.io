@@ -12,17 +12,27 @@ function activateSection(targetId, doc = document, navButtons, sections, topBars
     topBarLabels.forEach(label => label.classList.remove('active'));
 
     const targetSection = doc.getElementById(targetId);
-    const targetNavButton = doc.querySelector(`.nav-push-button[data-target="${targetId}"]`);
+    let targetNavButton = doc.querySelector(`.nav-push-button[data-target="${targetId}"]`);
     let targetTopBarId = targetId + '-bar';
-    consoleLog('targetTopBarId: ' + targetTopBarId);
-    const targetTopBar = doc.getElementById(targetTopBarId);
-    consoleLog('targetTopBar: ' + targetTopBar);
+    let targetTopBar = doc.getElementById(targetTopBarId);
+
+    // Map overview / projects / games / courses / logs to projects-bar & logs button if needed
+    if (targetId === 'overview' || targetId === 'projects' || targetId === 'logs' || targetId === 'games') {
+        if (!targetTopBar) targetTopBar = doc.getElementById('projects-bar') || doc.getElementById('logs-bar');
+        if (!targetNavButton) targetNavButton = doc.querySelector('.nav-push-button[data-target="overview"]') || doc.querySelector('.nav-push-button[data-target="projects"]') || doc.querySelector('.nav-push-button[data-target="logs"]');
+    } else if (targetId === 'about' || targetId === 'career' || targetId === 'education') {
+        if (!targetTopBar) targetTopBar = doc.getElementById('about-bar');
+        if (!targetNavButton) targetNavButton = doc.querySelector('.nav-push-button[data-target="about"]');
+    }
+
     const targetTopBarLabel = doc.querySelector(`.mfd-soft-key[data-target="${targetId}"]`);
 
     if (targetTopBarLabel) targetTopBarLabel.classList.add('active');
     if (targetSection) targetSection.classList.add('active');
     if (targetNavButton) targetNavButton.classList.add('active');
     if (targetTopBar) targetTopBar.classList.add('active');
+
+    getProjectCardsInActiveSection(doc);
 }
 
 function activateSubSection(targetId, doc = document, sections, topBarLabels) {
@@ -72,11 +82,11 @@ document.addEventListener('DOMContentLoaded', () => {
     const topBarLabels = document.querySelectorAll('.mfd-soft-key');
 
     // initial call based on data-initial-section or default
-    const initialTarget = document.body.dataset.initialSection || 'projects';
-    if (initialTarget === 'education' || initialTarget === 'courses' || initialTarget === 'games') {
-        activateSection('projects', document, navButtons, sections, topBars, topBarLabels);
+    const initialTarget = document.body.dataset.initialSection || 'overview';
+    if (initialTarget === 'games' || initialTarget === 'projects' || initialTarget === 'courses') {
+        activateSection('overview', document, navButtons, sections, topBars, topBarLabels);
         activateSubSection(initialTarget, document, sections, topBarLabels);
-    } else if (initialTarget === 'career') {
+    } else if (initialTarget === 'career' || initialTarget === 'education') {
         activateSection('about', document, navButtons, sections, topBars, topBarLabels);
         activateSubSection(initialTarget, document, sections, topBarLabels);
     } else {

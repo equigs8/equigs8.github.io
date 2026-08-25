@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Ethan Quigley - CMD Interface</title>
+    <title>Portfolio - Ethan Quigley - Projects</title>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Orbitron:wght@500;700&family=Chakra+Petch:wght@400;500;600;700&family=Inconsolata&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="dist/output.css">
 </head>
-<body>
+<body data-initial-section="projects">
     <div class="console-container">
         <header class="header-panel">
             <h1>ETHAN QUIGLEY</h1>
@@ -20,7 +20,7 @@
                 <button class="nav-push-button" data-target="about" id="nav-about">BIO</button>
             </div>
             <div class="nav-button-assembly">
-                <button class="nav-push-button" data-target="overview" id="nav-projects">LOGS</button>
+                <button class="nav-push-button active" data-target="overview" id="nav-projects">LOGS</button>
             </div>
             <div class="nav-button-assembly">
                 <button class="nav-push-button" data-target="contact" id="nav-contact">COMM</button>
@@ -46,8 +46,8 @@
                     <div class="mfd-header-bar" id="about-bar">
                         <span class="mfd-soft-key" id="profile-label" data-target="about">PROFILE</span> <span class="mfd-soft-key" id="career-id" data-target="career">CAREER</span> <span class="mfd-soft-key" id="education-about-label" data-target="education">EDUCATION</span> <span class="mfd-soft-key" id="courses-about-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
-                    <div class="mfd-header-bar" id="projects-bar">
-                        <span class="mfd-soft-key" id="overview-label" data-target="overview">OVERVIEW</span> <span class="mfd-soft-key" id="games-label" data-target="games">GAMES</span> <span class="mfd-soft-key" id="projects-label" data-target="projects">PROJECTS</span> <span class="mfd-soft-key" id="courses-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
+                    <div class="mfd-header-bar active" id="projects-bar">
+                        <span class="mfd-soft-key" id="overview-label" data-target="overview">OVERVIEW</span> <span class="mfd-soft-key" id="games-label" data-target="games">GAMES</span> <span class="mfd-soft-key active" id="projects-label" data-target="projects">PROJECTS</span> <span class="mfd-soft-key" id="courses-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
                     <div class="mfd-content-area">
                         <section id="overview" class="content-section">
@@ -281,7 +281,7 @@
                             </div>
                         </section>
 
-                        <section id="projects" class="content-section">
+                        <section id="projects" class="content-section active">
                             <h2>// PROJECTS // HARDWARE & INTERACTIVE MEDIA //</h2>
                             <div class="project-grid">
                                 <div class="project-card">

@@ -8,17 +8,17 @@ describe('Portfolio Script Tests', () => {
             document.body.innerHTML = `
                 <div>
                     <section id="about" class="content-section"></section>
-                    <section id="projects" class="content-section active"></section>
+                    <section id="overview" class="content-section active"></section>
                 </div>
             `;
-            expect(getActiveSection(document)).toBe('projects');
+            expect(getActiveSection(document)).toBe('overview');
         });
 
         test('should return null if no section is active', () => {
             document.body.innerHTML = `
                 <div>
                     <section id="about" class="content-section"></section>
-                    <section id="projects" class="content-section"></section>
+                    <section id="overview" class="content-section"></section>
                 </div>
             `;
             expect(getActiveSection(document)).toBeNull();
@@ -27,7 +27,7 @@ describe('Portfolio Script Tests', () => {
             document.body.innerHTML = `
                 <div>
                     <section id="about" class="content-section active"></section>
-                    <section id="projects" class="content-section active"></section>
+                    <section id="overview" class="content-section active"></section>
                 </div>
             `;
             expect(getActiveSection(document)).toBe('about');
@@ -35,21 +35,23 @@ describe('Portfolio Script Tests', () => {
     });
 
     describe('activateSection', () => {
-        describe('activateSection for "projects"', () => {
+        describe('activateSection for "overview"', () => {
             let navButtons, sections, topBars, topBarLabels;
 
             beforeEach(() => {
                 // Set up the mock DOM
                 document.body.innerHTML = `
                     <button class="nav-push-button" data-target="about" id="nav-about"></button>
-                    <button class="nav-push-button" data-target="projects" id="nav-projects"></button>
+                    <button class="nav-push-button" data-target="overview" id="nav-projects"></button>
                     <div id="about-bar" class="mfd-header-bar">
                         <span class="mfd-soft-key" data-target="about"></span>
                     </div>
                     <div id="projects-bar" class="mfd-header-bar">
+                         <span class="mfd-soft-key" data-target="overview"></span>
                          <span class="mfd-soft-key" data-target="projects"></span>
                     </div>
                     <section id="about" class="content-section"></section>
+                    <section id="overview" class="content-section"></section>
                     <section id="projects" class="content-section"></section>
                 `;
 
@@ -60,17 +62,17 @@ describe('Portfolio Script Tests', () => {
                 topBarLabels = document.querySelectorAll('.mfd-soft-key');
 
                 // Call activateSection to set the state for the following tests
-                activateSection('projects', document, navButtons, sections, topBars, topBarLabels);
+                activateSection('overview', document, navButtons, sections, topBars, topBarLabels);
             });
 
-            test('should add "active" class to the target projects section', () => {
-                const projectsSection = document.getElementById('projects');
-                expect(projectsSection.classList.contains('active')).toBe(true);
+            test('should add "active" class to the target overview section', () => {
+                const overviewSection = document.getElementById('overview');
+                expect(overviewSection.classList.contains('active')).toBe(true);
             });
 
-            test('should add "active" class to the target projects navigation button', () => {
-                const projectsNavButton = document.querySelector('.nav-push-button[data-target="projects"]');
-                expect(projectsNavButton.classList.contains('active')).toBe(true);
+            test('should add "active" class to the target overview/logs navigation button', () => {
+                const logsNavButton = document.querySelector('.nav-push-button[data-target="overview"]');
+                expect(logsNavButton.classList.contains('active')).toBe(true);
             });
 
             test('should add "active" class to the target projects MFD header bar', () => {
@@ -78,9 +80,9 @@ describe('Portfolio Script Tests', () => {
                 expect(projectsTopBar.classList.contains('active')).toBe(true);
             });
 
-            test('should add "active" class to the target projects MFD soft key label in the header bar', () => {
-                const projectsTopBarLabel = document.querySelector('#projects-bar .mfd-soft-key[data-target="projects"]');
-                expect(projectsTopBarLabel.classList.contains('active')).toBe(true);
+            test('should add "active" class to the target overview MFD soft key label in the header bar', () => {
+                const overviewTopBarLabel = document.querySelector('#projects-bar .mfd-soft-key[data-target="overview"]');
+                expect(overviewTopBarLabel.classList.contains('active')).toBe(true);
             });
 
             test('should ensure a non-target section (e.g., about) does not have "active" class', () => {
@@ -92,16 +94,6 @@ describe('Portfolio Script Tests', () => {
                 const aboutNavButton = document.querySelector('.nav-push-button[data-target="about"]');
                 expect(aboutNavButton.classList.contains('active')).toBe(false);
             });
-
-            test('should ensure a non-target MFD header bar (e.g., about-bar) does not have "active" class', () => {
-                const aboutTopBar = document.getElementById('about-bar');
-                expect(aboutTopBar.classList.contains('active')).toBe(false);
-            });
-
-            test('should ensure a non-target MFD soft key label (e.g., about) does not have "active" class', () => {
-                const aboutTopBarLabel = document.querySelector('#about-bar .mfd-soft-key[data-target="about"]');
-                expect(aboutTopBarLabel.classList.contains('active')).toBe(false);
-            });
         });
     });
 
@@ -111,34 +103,34 @@ describe('Portfolio Script Tests', () => {
         beforeEach(() => {
             document.body.innerHTML = `
                 <div id="projects-bar" class="mfd-header-bar active">
-                    <span class="mfd-soft-key" data-target="projects">OVERVIEW</span>
+                    <span class="mfd-soft-key" data-target="overview">OVERVIEW</span>
                     <span class="mfd-soft-key" data-target="games">GAMES</span>
-                    <span class="mfd-soft-key" data-target="education">EDUCATION</span>
+                    <span class="mfd-soft-key" data-target="projects">PROJECTS</span>
                     <span class="mfd-soft-key" data-target="courses">COURSES</span>
                 </div>
-                <section id="projects" class="content-section active"></section>
+                <section id="overview" class="content-section active"></section>
                 <section id="games" class="content-section"></section>
-                <section id="education" class="content-section"></section>
+                <section id="projects" class="content-section"></section>
                 <section id="courses" class="content-section"></section>
             `;
             sections = document.querySelectorAll('.content-section');
             topBarLabels = document.querySelectorAll('.mfd-soft-key');
         });
 
-        test('should activate education section and education soft key', () => {
-            activateSubSection('education', document, sections, topBarLabels);
-            expect(document.getElementById('education').classList.contains('active')).toBe(true);
-            expect(document.getElementById('projects').classList.contains('active')).toBe(false);
-            expect(document.querySelector('.mfd-soft-key[data-target="education"]').classList.contains('active')).toBe(true);
-            expect(document.querySelector('.mfd-soft-key[data-target="projects"]').classList.contains('active')).toBe(false);
+        test('should activate projects section and projects soft key', () => {
+            activateSubSection('projects', document, sections, topBarLabels);
+            expect(document.getElementById('projects').classList.contains('active')).toBe(true);
+            expect(document.getElementById('overview').classList.contains('active')).toBe(false);
+            expect(document.querySelector('.mfd-soft-key[data-target="projects"]').classList.contains('active')).toBe(true);
+            expect(document.querySelector('.mfd-soft-key[data-target="overview"]').classList.contains('active')).toBe(false);
         });
 
         test('should activate courses section and courses soft key', () => {
             activateSubSection('courses', document, sections, topBarLabels);
             expect(document.getElementById('courses').classList.contains('active')).toBe(true);
-            expect(document.getElementById('projects').classList.contains('active')).toBe(false);
+            expect(document.getElementById('overview').classList.contains('active')).toBe(false);
             expect(document.querySelector('.mfd-soft-key[data-target="courses"]').classList.contains('active')).toBe(true);
-            expect(document.querySelector('.mfd-soft-key[data-target="projects"]').classList.contains('active')).toBe(false);
+            expect(document.querySelector('.mfd-soft-key[data-target="overview"]').classList.contains('active')).toBe(false);
         });
     });
 

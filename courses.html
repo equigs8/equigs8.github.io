@@ -20,7 +20,7 @@
                 <button class="nav-push-button" data-target="about" id="nav-about">BIO</button>
             </div>
             <div class="nav-button-assembly">
-                <button class="nav-push-button active" data-target="projects" id="nav-projects">LOGS</button>
+                <button class="nav-push-button active" data-target="overview" id="nav-projects">LOGS</button>
             </div>
             <div class="nav-button-assembly">
                 <button class="nav-push-button" data-target="contact" id="nav-contact">COMM</button>
@@ -30,9 +30,9 @@
         <div class="mfd-assembly-wrapper">
             <div class="mfd-assembly">
                 <div class="mfd-button-bank horizontal top">
-                    <button class="mfd-push-button" title="Function Key 1" data-target="projects">˅</button>
+                    <button class="mfd-push-button" title="Function Key 1" data-target="overview">˅</button>
                     <button class="mfd-push-button" title="Function Key 2" data-target="games">˅</button>
-                    <button class="mfd-push-button" title="Function Key 3" data-target="education">˅</button>
+                    <button class="mfd-push-button" title="Function Key 3" data-target="projects">˅</button>
                     <button class="mfd-push-button" title="Function Key 4" data-target="courses">˅</button>
                     <button class="mfd-push-button" title="Function Key 5">˅</button>
                 </div>
@@ -47,9 +47,29 @@
                         <span class="mfd-soft-key" id="profile-label" data-target="about">PROFILE</span> <span class="mfd-soft-key" id="career-id" data-target="career">CAREER</span> <span class="mfd-soft-key" id="education-about-label" data-target="education">EDUCATION</span> <span class="mfd-soft-key" id="courses-about-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
                     <div class="mfd-header-bar active" id="projects-bar">
-                        <span class="mfd-soft-key" id="overview-label" data-target="projects">OVERVIEW</span> <span class="mfd-soft-key" id="games-label" data-target="games">GAMES</span> <span class="mfd-soft-key" id="education-label" data-target="education">EDUCATION</span> <span class="mfd-soft-key active" id="courses-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
+                        <span class="mfd-soft-key" id="overview-label" data-target="overview">OVERVIEW</span> <span class="mfd-soft-key" id="games-label" data-target="games">GAMES</span> <span class="mfd-soft-key" id="projects-label" data-target="projects">PROJECTS</span> <span class="mfd-soft-key active" id="courses-label" data-target="courses">COURSES</span> <span class="mfd-soft-key">OPT5</span>
                     </div>
                     <div class="mfd-content-area">
+                        <section id="overview" class="content-section">
+                            <h2>// LOGS // MISSION OVERVIEW //</h2>
+                            <p>SYSTEM STATUS: ONLINE // OPERATOR: Ethan Quigley</p>
+                            <p>DESIGNATION: Game Developer & Interactive Media Technologist</p>
+                            <p class="mt-2">MISSION BRIEF: Welcome to the Logs terminal. My work centers on the intersection of game design, interactive software engineering, and physical-digital computing. I build mechanics-driven games in Unity/C#, interactive web applications, physical hardware installations, and dynamic audio-visual systems.</p>
+                            
+                            <div class="project-grid mt-4">
+                                <div class="project-card">
+                                    <h3>LOGS DIRECTORY & ACCESS MODULES</h3>
+                                    <div class="card-container">
+                                        <div class="card-side">
+                                            <p><strong>[OPT2] GAMES:</strong> Playable games, game jams, physics & mechanics prototypes, and level design (Mirrors & Lasers, Quidditch Manager 25, Project Pharaoh, Will Pump The Game).</p>
+                                            <p><strong>[OPT3] PROJECTS:</strong> Multi-disciplinary hardware and media prototypes, physical computing installations (Project: Turntable), audio-visual soundscapes, and game UI/UX systems.</p>
+                                            <p><strong>[OPT4] COURSES:</strong> Academic curriculum and specialized training in advanced game programming, interactive computing, and media production.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
                         <section id="about" class="content-section">
                             <h2>// PERSONNEL FILE //</h2>
                             <p>ID: Ethan Quigley</p>
@@ -59,6 +79,7 @@
                             <p>STATUS: LOOKING FOR WORK</p>
                             <p>END OF FILE.</p>
                         </section>
+
                         <section id="career" class="content-section">
                             <h2>// CAREER LOGS & EXPERIENCE //</h2>
                             <div class="project-grid">
@@ -156,6 +177,7 @@
                                 </div>
                             </div>
                         </section>
+
                         <section id="education" class="content-section">
                             <h2>// EDUCATION & ACADEMIC CREDENTIALS //</h2>
                             <div class="project-grid">
@@ -177,6 +199,7 @@
                                 </div>
                             </div>
                         </section>
+
                         <section id="courses" class="content-section active">
                             <h2>// COURSEWORK & SPECIALIZED TRAINING //</h2>
                             <div class="project-grid">
@@ -224,11 +247,15 @@
                                 </div>
                             </div>
                         </section>
+
                         <section id="games" class="content-section">
                             <h2>// GAMES //</h2>
                             <div class="project-grid">
                                 <div class="project-card">
                                     <h3>MIRRORS & LASERS</h3>
+                                    <!-- <div class="game-iframe-container">
+                                        <iframe src="games/mirrors_and_lasers/index.html" title="Mirrors & Lasers Game" allowfullscreen></iframe>
+                                    </div> -->
                                     <div class="card-container">
                                         <div class="card-side">
                                             <!--<img src="images/MirrorsAndLasers.png" alt=""> TODO: ADD IMG-->
@@ -240,6 +267,7 @@
                                             <div class="links mt-2"><a href="https://equigs8.itch.io/mirrors-lasers" target="_blank">VIEW GAME</a></div>
                                         </div> 
                                     </div>
+
                                 </div>
                                 <div class="project-card">
                                     <h3>QUIDDITCH MANAGER 25</h3>
@@ -252,8 +280,9 @@
                                 </div>
                             </div>
                         </section>
+
                         <section id="projects" class="content-section">
-                            <h2>// MISSION & PROJECT LOGS //</h2>
+                            <h2>// PROJECTS // HARDWARE & INTERACTIVE MEDIA //</h2>
                             <div class="project-grid">
                                 <div class="project-card">
                                     <h3>PROJECT: TURNTABLE</h3>
@@ -262,6 +291,7 @@
                                             <div class="img-container">
                                                 <img src="images/Turntable.jpg" alt="https://openlab.citytech.cuny.edu/ethanquigley/files/2025/05/ImageInspo.jpg">
                                             </div>
+
                                         </div>
                                         <div class="card-side">
                                             <p>ROLE: Designer. </p>
@@ -302,6 +332,7 @@
                                 </div>
                             </div>
                         </section>
+
                         <section id="contact" class="content-section">
                             <h2>// ESTABLISH COMMS LINK //</h2>
                             <p>AUTHORIZED CHANNELS:</p>
